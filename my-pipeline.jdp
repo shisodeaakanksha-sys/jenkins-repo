@@ -1,5 +1,10 @@
 pipeline{
     agent any
+    environment {
+        JAVA_HOME = "/usr/lib/jvm/java-17-openjdk-amd64"
+        PATH = "${JAVA_HOME}/bin:${env.PATH}"
+    }
+
     stages{
         stage('PULL SUCCESS'){
             steps{
@@ -7,9 +12,13 @@ pipeline{
                 echo "pull done"
             }
         }
-        stage('build SUCCESS'){
-            steps{
-                echo "build done"
+        stage('BUILD STAGE') {
+            steps {
+                dir('backend') {
+                    sh 'java -version'
+                    sh 'mvn clean package -DskipTests'
+                }
+                echo 'BUILD SUCCESS'
             }
         }
         stage('TEST SUCCESS'){
