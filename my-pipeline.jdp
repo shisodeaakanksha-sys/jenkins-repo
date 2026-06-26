@@ -24,18 +24,20 @@ pipeline{
                 echo 'BUILD SUCCESS'
             }
         }
-        stage('TEST SUCCESS'){
-            steps{
-                withSonarQubeEnv('SonarQube'){
-                 dir('backend') {
-                   sh '''mvn sonar:sonar \\
-                    -Dsonar.projectKey=my-project \\
-                    -Dsonar.projectName=my-project \\
-                    '''
-                 }
-                }
-                echo 'TEST SUCCESS'
-            }
+        stage('TEST SUCCESS') {
+ 	   steps {
+	
+        	withSonarQubeEnv('SonarQube') {
+            	dir('backend') {
+                 sh '''
+                  mvn sonar:sonar \
+                  -Dsonar.projectKey=my-project \
+                  -Dsonar.projectName=my-project
+                '''
+		}
+              }
+        echo 'TEST SUCCESS'
+    	    }
         }
         stage('DEPLOY SUCCESS'){
             steps{
