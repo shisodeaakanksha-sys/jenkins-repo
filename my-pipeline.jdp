@@ -8,7 +8,7 @@ pipeline{
     stages{
         stage('PULL SUCCESS'){
             steps{
-		deleteDir() 
+		        deleteDir() 
                 git 'https://github.com/chetanraval07/cdec-b29.git'
                 echo "pull done"
             }
@@ -17,7 +17,7 @@ pipeline{
             steps {
                 dir('backend') {
                     sh 'java -version'
-		    sh ' rm -rf target || true'
+		            sh ' rm -rf target || true'
                     sh 'mvn clean package -DskipTests'
                 }
                 echo 'BUILD SUCCESS'
@@ -25,7 +25,7 @@ pipeline{
         }
         stage('TEST SUCCESS'){
             steps{
-                withSonarQubeEnv('sonar-cred'){
+                withSonarQubeEnv('SonarQube'){
                  dir('backend') {
                    sh '''mvn sonar:sonar \\
                     -Dsonar.projectKey=my-project \\
