@@ -24,13 +24,13 @@ pipeline{
         stage('TEST SUCCESS'){
             steps{
 		dir('backend') {
-			sh '''mvn sonar:sonar \\
-  		  	 -Dsonar.projectKey=my-project \\
-  		  	 -Dsonar.projectName=\'my-project\' \\
-  		  	 -Dsonar.host.url=http://13.51.11.190:9000 \\
-  		  	 -Dsonar.token=sqp_da4e4c0f8c47c08f706df9a64b69840db402debe'''
-                	echo "test done"
+		  sh '''mvn sonar:sonar \\
+  		   -Dsonar.projectKey=my-project \\
+  		   -Dsonar.projectName=\'my-project\' \\
+  	  	   -Dsonar.host.url=http://13.51.11.190:9000 \\
+  		   -Dsonar.token=sqp_da4e4c0f8c47c08f706df9a64b69840db402debe'''			
 		}
+		echo 'TEST SUCCESS'
             }
         }
         stage('DEPLOY SUCCESS'){
