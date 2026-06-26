@@ -23,7 +23,7 @@ pipeline{
         }
         stage('TEST SUCCESS'){
             steps{
-		withSonarQubeEnv('sonar-cred'){
+		withSonarQubeEnv(credentialsId:'sonar-cred'){
 		 dir('backend') {
 		   sh '''mvn sonar:sonar \\
   		    -Dsonar.projectKey=my-project \\
