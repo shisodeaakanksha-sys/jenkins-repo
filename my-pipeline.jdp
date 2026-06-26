@@ -6,12 +6,13 @@ pipeline{
     }
 
     stages{
-        stage('PULL SUCCESS'){
-            steps{
-		        deleteDir() 
-                git 'https://github.com/chetanraval07/cdec-b29.git'
+        stage('PULL SUCCess'){
+            steps{ 
+                git (
+		branch:'master',
+		'https://github.com/chetanraval07/cdec-b29.git')
                 echo "pull done"
-            }
+		}
         }
         stage('BUILD STAGE') {
             steps {
@@ -25,7 +26,7 @@ pipeline{
         }
         stage('TEST SUCCESS'){
             steps{
-                withSonarQubeEnv('SonarQube'){
+                withSonarQubeEnv('sonar-cred'){
                  dir('backend') {
                    sh '''mvn sonar:sonar \\
                     -Dsonar.projectKey=my-project \\
@@ -43,4 +44,3 @@ pipeline{
         }
     }
 }
-
