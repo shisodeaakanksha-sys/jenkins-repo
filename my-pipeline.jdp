@@ -21,7 +21,7 @@ pipeline{
 		            sh ' rm -rf target || true'
                     sh 'mvn clean package -DskipTests'
                 }
-                echo 'BUILD SUCCESS'
+                echo 'BUILD SUCCESSFULLY'
             }
         }
         stage('TEST SUCCESS') {
