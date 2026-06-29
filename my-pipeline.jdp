@@ -45,7 +45,7 @@ pipeline {
             }
         }
 
-        stage('DEPLOY SUCCESS') {
+        stage('CONTINUOUS DELIVERY') {
             steps {
                 echo 'deploy done'
             }
