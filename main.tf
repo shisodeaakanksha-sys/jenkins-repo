@@ -8,7 +8,7 @@ terraform {
 }
 
 provider "aws" {
-  region = "eu-central-1" // Specify the AWS region
+  region = "eu-north-1" // Specify the AWS region
 }
 data "aws_vpc" "default" { // Fetch default VPC
   default = true
