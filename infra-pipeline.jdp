@@ -1,0 +1,36 @@
+pipeline{
+   agent any 
+	stages{
+	  stage(PULL STAGE){
+		steps{
+		  git 'https://github.com/shisodeaakanksha-sys/jenkins-repo.git'
+		  echo 'PULL SUCCESS'		
+		}
+	   }
+	
+	   stage(INIT & PLAN){
+		steps{
+		  sh'''
+		  terraform init -reconfigure
+ 		  terraform plan
+		  '''
+		}
+	   }
+
+	  stage(APPROVAL){
+		steps{
+		   timeout(time: 30, unit: 'MINUTES'){
+			input message: 'Approval is required. Shall we proceed?, OK : "Approve"
+		   }
+		}
+	  }
+
+	  stage('APPLY'){
+		steps{
+		  sh'''
+		  terraform apply --auto-approve
+		  '''
+		}
+	   }
+	}
+} 
