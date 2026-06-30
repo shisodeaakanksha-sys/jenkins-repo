@@ -11,7 +11,7 @@ pipeline {
         stage('PULL SUCCESS') {
             steps {
                 git branch: 'master',
-                    url: 'https://github.com/chetanraval07/cdec-b29.git'
+                    url: 'https://github.com/shisodeaakanksha-sys/jenkins-repo.git'
             }
         }
 
